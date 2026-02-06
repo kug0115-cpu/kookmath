@@ -318,6 +318,11 @@ body {
     color: var(--primary-color);
 }
 
+.chapter-item.open .chapter-arrow {
+    transform: rotate(90deg);
+    /* Rotate down */
+}
+
 .btn-share-link {
     font-size: 18px;
     padding: 5px 10px;
@@ -341,7 +346,7 @@ body {
 }
 
 .video-grid {
-    display: grid;
+    /* display: grid; Removed to allow display:none in .video-list to work */
     grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
     gap: 10px;
 }

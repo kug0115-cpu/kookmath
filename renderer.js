@@ -269,7 +269,11 @@ function renderChapterList(book) {
     book.chapters.forEach((chapter, cIndex) => {
         const item = document.createElement('div');
         item.className = 'chapter-item';
-        // Auto-open if just added/edited? Maybe later.
+
+        // Auto-open if this is the chapter we are working on (or linked)
+        if (chapter === selectedChapter) {
+            item.classList.add('open');
+        }
 
         const header = document.createElement('div');
         header.className = 'chapter-header';
@@ -277,9 +281,11 @@ function renderChapterList(book) {
         const titleSpan = document.createElement('span');
         // Add arrow icon based on state
         const arrow = document.createElement('span');
-        arrow.textContent = '▼ '; // or '▶'
+        arrow.textContent = '▶ ';
         arrow.style.marginRight = '5px';
         arrow.style.fontSize = '12px';
+        arrow.style.display = 'inline-block'; // Required for transform
+        arrow.style.transition = 'transform 0.2s'; // Smooth rotation
         arrow.className = 'chapter-arrow';
 
         titleSpan.appendChild(arrow);
