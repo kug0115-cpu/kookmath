@@ -111,6 +111,9 @@ async function init() {
     const linkedChapterIndex = params.get('chapter');
 
     if (linkedBookId) {
+        // Deep Link Mode: Hide Sidebar & Admin tools for clean view
+        document.body.classList.add('deep-link-mode');
+
         // Find Book across all grades
         let foundBook = null;
         for (const grade of appData.grades) {
@@ -281,7 +284,16 @@ function renderChapterList(book) {
         btnShare.title = '이 단원 링크 복사';
         btnShare.onclick = (e) => {
             e.stopPropagation();
-            const url = `${window.location.origin}${window.location.pathname}?book=${book.id}&chapter=${cIndex}`;
+
+            // Fix: Use GitHub URL if in Electron (PC App), otherwise use current URL
+            let baseUrl;
+            if (isElectron) {
+                baseUrl = 'https://kug0115-cpu.github.io/kookmath/';
+            } else {
+                baseUrl = window.location.origin + window.location.pathname;
+            }
+
+            const url = `${baseUrl}?book=${book.id}&chapter=${cIndex}`;
 
             // Clipboard API might need secure context (https) or localhost
             // Fallback for file protocol
