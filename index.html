@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Learning Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for Premium Look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Outfit:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-area">
+                <h1>📚 StudyHub</h1>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" id="nav-home">
+                    <span class="icon">🏠</span> 내 서재
+                </button>
+                <button class="nav-item" id="nav-mode-toggle">
+                    <span class="icon">⚙️</span> 관리자 모드 <span id="admin-indicator" class="badge off">OFF</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- View: Bookshelf (Home) -->
+            <section id="view-shelf" class="view active">
+                <header class="section-header">
+                    <h2>나의 문제집</h2>
+                    <button class="btn-primary" id="btn-add-book" style="display: none;">+ 책 추가</button>
+                </header>
+                <div id="shelf-container" class="shelf-grid">
+                    <!-- Dynamic Content -->
+                </div>
+            </section>
+
+            <!-- View: Lecture Detail -->
+            <section id="view-detail" class="view">
+                <header class="detail-header">
+                    <button class="btn-back" id="btn-back-shelf">← 목록으로</button>
+                    <h2 id="detail-book-title">Book Title</h2>
+                </header>
+
+                <div class="split-layout">
+                    <!-- Left: Chapter List -->
+                    <div class="chapter-list-panel">
+                        <div id="chapter-list-container">
+                            <!-- Dynamic Content -->
+                        </div>
+                        <button class="btn-secondary full-width" id="btn-add-chapter" style="display: none;">+ 단원
+                            추가</button>
+                    </div>
+
+                    <!-- Right: Player -->
+                    <div class="video-player-panel">
+                        <div id="video-placeholder" class="placeholder-box">
+                            <p>문제를 선택하면<br>영상이 재생됩니다.</p>
+                        </div>
+                        <div id="video-container" style="display: none;">
+                            <iframe id="youtube-player" src="" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>
+                            <video id="local-player" controls style="display: none; width: 100%; height: 100%;"></video>
+                        </div>
+                        <div class="video-info">
+                            <h3 id="current-video-title"></h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay" style="display: none;">
+
+        <!-- Add Book Modal -->
+        <div id="modal-add-book" class="modal-card" style="display: none;">
+            <h3>새 문제집 추가</h3>
+            <div class="input-group">
+                <label>학년/구분</label>
+                <select id="input-book-grade">
+                    <!-- Populated dynamically -->
+                </select>
+                <input type="text" id="input-new-grade" placeholder="새 학년 이름 입력"
+                    style="display: none; margin-top: 5px;">
+            </div>
+            <div class="input-group">
+                <label>책 제목</label>
+                <input type="text" id="input-book-title" placeholder="예: 중2-1 중간고사 기출">
+            </div>
+            <div class="input-group">
+                <label>표지 이미지</label>
+                <input type="file" id="input-book-cover" accept="image/*">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModals()">취소</button>
+                <button class="btn-primary" id="btn-save-book">저장</button>
+            </div>
+        </div>
+
+        <!-- Add Chapter Modal -->
+        <div id="modal-add-chapter" class="modal-card" style="display: none;">
+            <h3>새 단원 추가</h3>
+            <div class="input-group">
+                <label>단원명</label>
+                <input type="text" id="input-chapter-title" placeholder="예: 1단원. 유리수와 순환소수">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModals()">취소</button>
+                <button class="btn-primary" id="btn-save-chapter">저장</button>
+            </div>
+        </div>
+
+        <!-- Add Video Modal -->
+        <div id="modal-add-video" class="modal-card" style="display: none;">
+            <h3>문제 동영상 연결</h3>
+            <div class="input-group">
+                <label>문제 번호</label>
+                <input type="number" id="input-video-no" placeholder="1">
+            </div>
+            <div class="input-group">
+                <label>문제 제목 (선택)</label>
+                <input type="text" id="input-video-title" placeholder="기본 문제">
+            </div>
+            <div class="input-group">
+                <label>유튜브 링크 URL</label>
+                <input type="text" id="input-video-url" placeholder="https://youtu.be/...">
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModals()">취소</button>
+                <button class="btn-primary" id="btn-save-video">저장</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modals Script End -->
+    <script src="renderer.js"></script>
+</body>
+
+</html>

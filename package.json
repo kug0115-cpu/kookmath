@@ -1,0 +1,37 @@
+{
+    "name": "video-learning-manager",
+    "version": "1.0.0",
+    "description": "A personal video learning management system for problem-solving videos.",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "dist": "electron-builder"
+    },
+    "keywords": [
+        "education",
+        "video",
+        "manager",
+        "electron"
+    ],
+    "author": "My Math Manager",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^28.0.0",
+        "electron-builder": "^24.9.1"
+    },
+    "build": {
+        "appId": "com.mymath.videomanager",
+        "productName": "MyMathManager",
+        "win": {
+            "target": [
+                "nsis",
+                "portable"
+            ]
+        },
+        "files": [
+            "**/*",
+            "!dist/*",
+            "!.git/*"
+        ]
+    }
+}

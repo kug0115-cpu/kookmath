@@ -1,0 +1,34 @@
+{
+  "grades": [
+    {
+      "id": "grade_middle_1",
+      "name": "중학 1학년",
+      "books": [
+        {
+          "id": "book_1770361636069",
+          "title": "중1-1 유형서 ",
+          "cover_color": "#921fd7",
+          "chapters": []
+        }
+      ]
+    },
+    {
+      "id": "grade_1770362105678",
+      "name": "중학2학년",
+      "books": [
+        {
+          "id": "book_1770362105678",
+          "title": "중2-1 유형서",
+          "cover_color": "#673364",
+          "cover_image": null,
+          "chapters": []
+        }
+      ]
+    },
+    {
+      "id": "grade_high_common",
+      "name": "공통수학1",
+      "books": []
+    }
+  ]
+}
