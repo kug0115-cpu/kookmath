@@ -347,7 +347,19 @@ body {
 }
 
 .chapter-item.open .video-list {
+    display: grid;
+    /* Fix: Changed from block to grid to maintain layout */
+}
+
+/* Deep Link Mode: Show only the target chapter */
+body.deep-link-mode .chapter-item {
+    display: none;
+    /* Hide all by default in this mode */
+}
+
+body.deep-link-mode .chapter-item.target-chapter {
     display: block;
+    /* Show only the specific chapter */
 }
 
 .video-item {

@@ -130,6 +130,7 @@ async function init() {
                 const chapters = document.querySelectorAll('.chapter-item');
                 if (chapters[linkedChapterIndex]) {
                     chapters[linkedChapterIndex].classList.add('open');
+                    chapters[linkedChapterIndex].classList.add('target-chapter'); // Mark for isolation
                     chapters[linkedChapterIndex].scrollIntoView({ behavior: 'smooth' });
                 }
             }
