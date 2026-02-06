@@ -8,7 +8,66 @@
           "id": "book_1770361636069",
           "title": "중1-1 유형서 ",
           "cover_color": "#921fd7",
-          "chapters": []
+          "chapters": [
+            {
+              "name": "1단원 A난이도",
+              "videos": [
+                {
+                  "problem_no": "1",
+                  "title": "1번 문제",
+                  "type": "youtube",
+                  "url": ""
+                },
+                {
+                  "problem_no": "2",
+                  "title": "2번 문제",
+                  "type": "youtube",
+                  "url": ""
+                },
+                {
+                  "problem_no": "3",
+                  "title": "3번 문제",
+                  "type": "youtube",
+                  "url": ""
+                },
+                {
+                  "problem_no": "4",
+                  "title": "4번 문제",
+                  "type": "youtube",
+                  "url": ""
+                },
+                {
+                  "problem_no": "5",
+                  "title": "5번 문제",
+                  "type": "youtube",
+                  "url": ""
+                }
+              ]
+            },
+            {
+              "name": "1단원 B난이도",
+              "videos": [
+                {
+                  "problem_no": "1",
+                  "title": "1번 문제",
+                  "type": "youtube",
+                  "url": ""
+                },
+                {
+                  "problem_no": "2",
+                  "title": "2번 문제",
+                  "type": "youtube",
+                  "url": ""
+                },
+                {
+                  "problem_no": "3",
+                  "title": "3번 문제",
+                  "type": "youtube",
+                  "url": ""
+                }
+              ]
+            }
+          ]
         }
       ]
     },
