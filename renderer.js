@@ -275,7 +275,15 @@ function renderChapterList(book) {
         header.className = 'chapter-header';
 
         const titleSpan = document.createElement('span');
-        titleSpan.textContent = chapter.name;
+        // Add arrow icon based on state
+        const arrow = document.createElement('span');
+        arrow.textContent = '▼ '; // or '▶'
+        arrow.style.marginRight = '5px';
+        arrow.style.fontSize = '12px';
+        arrow.className = 'chapter-arrow';
+
+        titleSpan.appendChild(arrow);
+        titleSpan.appendChild(document.createTextNode(chapter.name));
         header.appendChild(titleSpan);
 
         // Share Button (Link Icon)
@@ -509,6 +517,8 @@ function openAddVideoModal(chapter) {
     document.getElementById('input-video-title').value = '';
     document.getElementById('input-video-url').value = '';
     openModal('modal-add-video');
+    document.getElementById('group-video-count').style.display = 'block'; // Show count input on new
+    document.getElementById('input-video-count').value = 1;
 }
 
 function openEditVideoModal(chapter, index) {
@@ -521,40 +531,53 @@ function openEditVideoModal(chapter, index) {
     document.getElementById('input-video-url').value = video.url;
 
     openModal('modal-add-video');
+    document.getElementById('group-video-count').style.display = 'none'; // Hide count input on edit
 }
 
 document.getElementById('btn-save-video').onclick = async () => {
-    const no = document.getElementById('input-video-no').value;
-    const title = document.getElementById('input-video-title').value || `${no}번 문제`;
+    const noStart = parseInt(document.getElementById('input-video-no').value); // Start Number
+    const title = document.getElementById('input-video-title').value;
     const url = document.getElementById('input-video-url').value;
-
-    // Allow empty URL for placeholders
-    // if (!url) return alert('URL을 입력해주세요');
+    const count = parseInt(document.getElementById('input-video-count').value || 1);
 
     if (selectedChapter) {
         if (editingVideoIndex >= 0) {
-            // Edit existing
+            // Edit Mode: Single update
             selectedChapter.videos[editingVideoIndex] = {
                 ...selectedChapter.videos[editingVideoIndex],
-                problem_no: no,
-                title: title,
+                problem_no: noStart,
+                title: title || `${noStart}번 문제`,
                 url: url
             };
         } else {
-            // Add new
-            selectedChapter.videos.push({
-                problem_no: no,
-                title: title,
-                type: 'youtube', // Default
-                url: url
-            });
+            // Add Mode: Handle Bulk Creation
+            if (count > 1) {
+                // Bulk Add loop
+                for (let i = 0; i < count; i++) {
+                    const currentNo = noStart + i;
+                    selectedChapter.videos.push({
+                        problem_no: currentNo,
+                        title: `${currentNo}번 문제`, // Default title for bulk
+                        type: 'youtube',
+                        url: '' // Empty URL default
+                    });
+                }
+            } else {
+                // Single Add
+                selectedChapter.videos.push({
+                    problem_no: noStart,
+                    title: title || `${noStart}번 문제`,
+                    type: 'youtube', // Default
+                    url: url
+                });
+            }
         }
 
         // Sort by number
         selectedChapter.videos.sort((a, b) => parseInt(a.problem_no) - parseInt(b.problem_no));
 
         await saveData();
-        renderChapterList(selectedBook); // Re-render to show updated grid
+        renderChapterList(selectedBook);
         closeModals();
     }
 };

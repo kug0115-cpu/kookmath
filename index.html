@@ -129,7 +129,7 @@
         <div id="modal-add-video" class="modal-card" style="display: none;">
             <h3>문제 동영상 연결</h3>
             <div class="input-group">
-                <label>문제 번호</label>
+                <label>문제 번호 (시작 번호)</label>
                 <input type="number" id="input-video-no" placeholder="1">
             </div>
             <div class="input-group">
@@ -137,8 +137,12 @@
                 <input type="text" id="input-video-title" placeholder="기본 문제">
             </div>
             <div class="input-group">
-                <label>유튜브 링크 URL</label>
+                <label>유튜브 링크 URL (비워두면 나중에 입력 가능)</label>
                 <input type="text" id="input-video-url" placeholder="https://youtu.be/...">
+            </div>
+            <div class="input-group" id="group-video-count">
+                <label>한 번에 여러 개 만들기 (개수)</label>
+                <input type="number" id="input-video-count" value="1" min="1">
             </div>
             <div class="modal-actions">
                 <button class="btn-cancel" onclick="closeModals()">취소</button>
